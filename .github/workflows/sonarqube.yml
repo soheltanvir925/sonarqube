@@ -1,5 +1,4 @@
-name: SonarQube Analysis (Minimal)
-
+name: SonarQube Analysis
 
 on:
   push:
@@ -9,10 +8,6 @@ on:
     branches:
       - main
 
-
-
-
-
 jobs:
   sonar:
     runs-on: ubuntu-latest
@@ -21,13 +16,16 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run SonarQube Scan
+      - name: Set SonarQube Scanner 
         uses: SonarSource/sonarqube-scan-action@v4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_HOST_URL: ${{ secretes.SONAR_HOST_URL }}
         with:
           args: >
             -Dsonar.projectKey=my-python-project
             -Dsonar.sources=.
             -Dsonar.sourceEncoding=UTF-8
+
+
+  
